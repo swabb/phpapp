@@ -1,0 +1,24 @@
+FROM php:7.2-fpm
+
+RUN apt-get update && \
+    apt-get install -y \
+    procps \
+    net-tools \
+    git \
+    curl \
+    mc \
+    libzip-dev \
+    libpng16-16 \
+    libpng-dev \
+    libxslt1.1 \
+    default-mysql-client
+
+RUN docker-php-ext-install mysqli
+
+WORKDIR /var/www/html
+
+COPY --chown=www-data:www-data ./index.php .
+
+EXPOSE 9000
+
+CMD ["php-fpm"]

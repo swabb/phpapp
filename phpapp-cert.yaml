@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: cert-auth-phpapp
+  namespace: phpapp
+spec:
+  secretName: cert-auth-phpapp
+  renewBefore: 360h # 15d
+  dnsNames:
+    - phpapp.sadkov.opsworks.co
+  issuerRef:
+    name: le-clusterissuer
+    kind: ClusterIssuer
