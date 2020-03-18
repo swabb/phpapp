@@ -8,6 +8,6 @@ data:
   DB_HOST: "mysql.phpapp.svc.cluster.local"
   DB_PORT: "3306"
   DB_USER: "root"
-  DB_PASS: "BigOneZPassword1"
+  DB_PASS: "BigOneZPassword"
   DB_NAME: "mysql"
   

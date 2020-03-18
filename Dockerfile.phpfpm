@@ -7,10 +7,6 @@ RUN apt-get update && \
     git \
     curl \
     mc \
-    libzip-dev \
-    libpng16-16 \
-    libpng-dev \
-    libxslt1.1 \
     default-mysql-client
 
 RUN docker-php-ext-install mysqli
