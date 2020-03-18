@@ -71,8 +71,8 @@ spec:
         - containerPort: 9000
         resources:
           limits:
-            cpu: 10m
-            memory: 20Mi
+            cpu: 20m
+            memory: 40Mi
           requests:
             cpu: 10m
             memory: 20Mi
@@ -121,6 +121,13 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+        resources:
+          limits:
+            cpu: 10m
+            memory: 20Mi
+          requests:
+            cpu: 5m
+            memory: 5Mi
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
