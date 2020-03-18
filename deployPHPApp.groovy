@@ -9,7 +9,7 @@ node(label: 'master'){
                             usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
 
                 sh 'aws ecr describe-repositories'
-                sh "set +x && \$(aws ecr get-login --no-include-email)"
+                sh "set +x && \$(aws ecr get-login --region eu-west-2 --no-include-email)"
 
                 sh "docker build -t 217993088031.dkr.ecr.eu-west-2.amazonaws.com/vsadkov-phpapp-nginx:latest -f ./Dockerfile.nginx ."
                 sh "docker push 217993088031.dkr.ecr.eu-west-2.amazonaws.com/vsadkov-phpapp-nginx:latest"
@@ -19,6 +19,13 @@ node(label: 'master'){
                 sh "docker push 217993088031.dkr.ecr.eu-west-2.amazonaws.com/vsadkov-phpapp-phpfpm:latest"
                 sh "docker rmi 217993088031.dkr.ecr.eu-west-2.amazonaws.com/vsadkov-phpapp-phpfpm:latest"
 
+                sh "kubectl create -f phpapp-env.yaml"
+                sh "kubectl create -f phpapp-cert.yaml"
+                sh "kubectl create -f phpapp-deployment.yaml"
+                
+                loadBalancer = sh returnStdout: true, script: "kubectl get svc -A | grep "LoadBalancer" | awk '{print $5}'"
+                println("LoadBalancer address: ${loadBalancer}")
+                
             }
         }
     }
