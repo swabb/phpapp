@@ -19,7 +19,8 @@ node(label: 'master'){
                 sh "docker push 217993088031.dkr.ecr.eu-west-2.amazonaws.com/vsadkov-phpapp-phpfpm:latest"
                 sh "docker rmi 217993088031.dkr.ecr.eu-west-2.amazonaws.com/vsadkov-phpapp-phpfpm:latest"
 
-                if (REDEPLOY == 'true') {
+                if (REDEPLOY == "true") {
+                    println('== Redeploy application. Delete old deploy.')
                     sh "kubectl delete -f phpapp-env.yaml"
                     sh "kubectl delete -f phpapp-deployment.yaml"
                 }
