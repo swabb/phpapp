@@ -8,14 +8,14 @@
     $link = mysqli_connect( $my_host, $my_user, $my_password, $my_db_name);
 
     if (!$link) {
-        echo "<p><h3>Not OK.</h3></p>" . PHP_EOL;
+        echo "<p><h1>Not OK.</h1></p>" . PHP_EOL;
         echo "<p><b>Errno code:</b> " . mysqli_connect_errno() . PHP_EOL . "</p>";
         echo "<p><b>Error text:</b> " . mysqli_connect_error() . PHP_EOL . "</p>";
         echo "<p><b>Host:</b> $my_host" . PHP_EOL . "</p>";
         exit;
     }
 
-    echo "<p><H3>OK Connection.</h3>" . PHP_EOL . "</p>";
+    echo "<p><H1>OK Connection.</h1>" . PHP_EOL . "</p>";
     echo "<p><b>Server info:</b> " . mysqli_get_host_info($link) . PHP_EOL . "</p>";
 
     mysqli_close($link);
