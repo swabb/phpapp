@@ -21,8 +21,8 @@ node(label: 'master'){
 
                 if (REDEPLOY == "true") {
                     println('== Redeploy application. Delete old deploy.')
-                    sh "kubectl delete -f phpapp-env.yaml"
-                    sh "kubectl delete -f phpapp-deployment.yaml"
+                    sh "kubectl delete -f phpapp-env.yaml || true"
+                    sh "kubectl delete -f phpapp-deployment.yaml || true"
                 } else {
                     sh "kubectl create -f phpapp-cert.yaml"
                 }
