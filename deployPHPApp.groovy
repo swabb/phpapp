@@ -8,7 +8,7 @@ node(label: 'master'){
             withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'aws_jenkins', 
                             usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY']]) {
 
-                sh 'aws ecr describe-repositories'
+                sh 'aws ecr describe-repositories --region eu-west-2'
                 sh "set +x && \$(aws ecr get-login --region eu-west-2 --no-include-email)"
 
                 sh "docker build -t 217993088031.dkr.ecr.eu-west-2.amazonaws.com/vsadkov-phpapp-nginx:latest -f ./Dockerfile.nginx ."
