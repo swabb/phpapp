@@ -23,9 +23,9 @@ node(label: 'master'){
                 sh "kubectl create -f phpapp-cert.yaml"
                 sh "kubectl create -f phpapp-deployment.yaml"
                 
-                loadBalancer = sh returnStdout: true, script: "kubectl get svc -A | grep "LoadBalancer" | awk '{print $5}'"
+                loadBalancer = sh returnStdout: true, script: "kubectl get svc -A | grep 'LoadBalancer' | awk '{print $5}'"
                 println("LoadBalancer address: ${loadBalancer}")
-                
+
             }
         }
     }
